@@ -1,0 +1,119 @@
+page 2 (
+    name: Dept_Report
+    alias: DEPT-REPORT
+    title: Dept_Report
+    appearance {
+        pageTemplate: @/standard
+        templateOptions: #DEFAULT#
+    }
+
+    region breadcrumb (
+        name: Breadcrumb
+        type: breadcrumb
+        source {
+            breadcrumb: @breadcrumb
+        }
+        layout {
+            sequence: 10
+            slot: breadcrumbBar
+        }
+        appearance {
+            template: @/title-bar
+            templateOptions: [
+                #DEFAULT#
+                t-BreadcrumbRegion--useBreadcrumbTitle
+            ]
+        }
+        componentAppearance {
+            breadcrumbTemplate: @/breadcrumb
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region dept-report (
+        name: Dept_Report
+        type: interactiveReport
+        source {
+            location: localDatabase
+            tableName: DEPT
+        }
+        layout {
+            sequence: 10
+            slot: body
+        }
+        appearance {
+            template: @/interactive-report
+            templateOptions: [
+                #DEFAULT#
+                t-IRR-region--hideHeader js-addHiddenHeadingRoleDesc
+            ]
+        }
+        pagination {
+            type: rowRangesXToY
+        }
+        messages {
+            whenNoDataFound: No data found.
+            whenMoreDataFound: The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.
+        }
+        advanced {
+            savedReportMappingIdentifier: 8013216261491088103
+        }
+
+        column DEPTNO (
+            type: plainText
+            heading {
+                heading: Department
+            }
+            layout {
+                sequence: 0
+            }
+            source {
+                primaryKey: true
+                dataType: number
+            }
+            advanced {
+                endUserAlias: A
+            }
+        )
+
+        column DNAME (
+            type: plainText
+            heading {
+                heading: Department
+            }
+            layout {
+                sequence: 2
+            }
+            source {
+                dataType: varchar2
+            }
+            advanced {
+                endUserAlias: B
+            }
+        )
+
+        page {
+            borderWidth: 0.5
+            borderColor: #666666
+        }
+
+        savedReport primary (
+            visibility: primaryDefault
+            view {
+                rowsPerPage: 50
+            }
+
+            displayColumn DEPTNO (
+                sequence: 1
+            )
+
+            displayColumn DNAME (
+                sequence: 2
+            )
+
+        )
+
+    )
+
+)
+
