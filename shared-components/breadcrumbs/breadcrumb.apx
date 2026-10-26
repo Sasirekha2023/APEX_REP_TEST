@@ -1,0 +1,50 @@
+breadcrumb breadcrumb (
+    name: Breadcrumb
+
+    entry employee-form (
+        name: Employee_form
+        pageNumber: 7
+        execution {
+            sequence: 10
+        }
+        appearance {
+            parentEntry: @employees
+        }
+        link {
+            target: {
+                page: 7
+            }
+        }
+    )
+
+    entry employees (
+        name: Employees
+        pageNumber: 6
+        execution {
+            sequence: 10
+        }
+        appearance {
+            parentEntry: @home
+        }
+        link {
+            target: {
+                page: 6
+            }
+        }
+    )
+
+    entry home (
+        name: Home
+        pageNumber: 1
+        execution {
+            sequence: 10
+        }
+        link {
+            target: {
+                page: 1
+            }
+        }
+    )
+
+)
+
